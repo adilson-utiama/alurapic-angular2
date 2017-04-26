@@ -21,4 +21,5 @@ AppModule = __decorate([
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);
+exports.AppModule = AppModule;
 //# sourceMappingURL=app.module.js.map
