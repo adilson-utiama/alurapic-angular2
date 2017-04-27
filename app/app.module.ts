@@ -4,6 +4,8 @@ import { AppComponent } from './app.component';
 import { FotoModule } from './foto/foto.module';
 import { HttpModule } from '@angular/http';
 
+import 'rxjs/add/operator/map';
+
 @NgModule({
     imports: [ BrowserModule, FotoModule, HttpModule ],
     declarations: [ AppComponent ],

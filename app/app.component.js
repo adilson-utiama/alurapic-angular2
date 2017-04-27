@@ -14,6 +14,15 @@ var http_1 = require("@angular/http");
 var AppComponent = (function () {
     //Poderiamos usar o decorator @Inject(Http) http neste caso
     function AppComponent(http) {
+        var _this = this;
+        this.fotos = [];
+        http
+            .get('v1/fotos')
+            .map(function (res) { return res.json(); })
+            .subscribe(function (fotos) {
+            _this.fotos = fotos;
+            console.log(_this.fotos);
+        }, function (erro) { return console.log(erro); });
     }
     return AppComponent;
 }());
