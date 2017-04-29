@@ -10,6 +10,7 @@ import { FotoComponent } from '../foto/foto.component';
 export class ListagemComponent {
     fotos: FotoComponent[] = [];
     service: FotoService;
+    mensagem: string = '';
 
     constructor(service: FotoService) {
 
@@ -27,11 +28,14 @@ export class ListagemComponent {
         this.service
             .remove(foto)
             .subscribe(() => {
-                console.log('Foto remmovida com sucesso.');
                 let novasFotos = this.fotos.slice(0);
                 let indice = novasFotos.indexOf(foto);
                 novasFotos.splice(indice, 1);
                 this.fotos = novasFotos; //evento de change detection, faz com que o angular atualize a view
-            }, erro => console.log(erro));
+                this.mensagem = 'Foto removida com sucesso.';
+            }, erro => {
+                console.log(erro);
+                this.mensagem = 'Não foi possivel remover a foto.';
+            });
     }
 }

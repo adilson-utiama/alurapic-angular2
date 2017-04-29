@@ -15,6 +15,7 @@ var ListagemComponent = (function () {
     function ListagemComponent(service) {
         var _this = this;
         this.fotos = [];
+        this.mensagem = '';
         this.service = service;
         this.service
             .lista()
@@ -28,12 +29,15 @@ var ListagemComponent = (function () {
         this.service
             .remove(foto)
             .subscribe(function () {
-            console.log('Foto remmovida com sucesso.');
             var novasFotos = _this.fotos.slice(0);
             var indice = novasFotos.indexOf(foto);
             novasFotos.splice(indice, 1);
             _this.fotos = novasFotos; //evento de change detection, faz com que o angular atualize a view
-        }, function (erro) { return console.log(erro); });
+            _this.mensagem = 'Foto removida com sucesso.';
+        }, function (erro) {
+            console.log(erro);
+            _this.mensagem = 'Não foi possivel remover a foto.';
+        });
     };
     return ListagemComponent;
 }());
