@@ -1,43 +1,45 @@
 <div class="container">
 
-    <form #meuForm="ngForm" class="row" (submit)="cadastrar($event)"><!--event binding -->
+    <form [formGroup]="meuForm" class="row" (submit)="cadastrar($event)"><!--event binding -->
         <div class="col-md-6">
             <div class="form-group">
                 <label>Título</label>
-                <!-- #titulo="ngModel" variavel de template com a diretiva ngModel como valor -->
+                <!-- formControlName = associao a validacao do lado do model -->
                 <input
-                    required
-                    #titulo="ngModel" 
+                    formControlName="titulo" 
                     name="titulo" 
                     [(ngModel)]="foto.titulo" 
                     class="form-control"  
                     autocomplete="off">
                 <!-- *ngIf = se o titulo esta invalido, nao exibe a mensagem -->
-                <span *ngIf="titulo.invalid" class="form-control alert-danger">
+                <span *ngIf="meuForm.controls.titulo.invalid" class="form-control alert-danger">
                     Título obrigatório
                 </span>     
             </div>
             <div class="form-group">
                 <label>URL</label>
                 <input 
-                    required 
-                    #url="ngModel" 
+                    formControlName="url"
                     name="url" 
                     [(ngModel)]="foto.url" 
                     class="form-control"  
                     autocomplete="off">
-                <span *ngIf="titulo.invalid" class="form-control alert-danger">
+                <span *ngIf="meuForm.controls.url.invalid" class="form-control alert-danger">
                     URL obrigatório
                 </span>
             </div>
             <div class="form-group">
                 <label>Descrição</label>
-                 <!--two way databinding -->
-                <textarea name="descricao" [(ngModel)]="foto.descricao" class="form-control"  autocomplete="off">
+                <textarea 
+                    formControlName="descricao"
+                    name="descricao" 
+                    [(ngModel)]="foto.descricao" 
+                    class="form-control"  
+                    autocomplete="off">
                 </textarea>
             </div>
             <!-- Desabilita o botao salvar caso os campos não sejam preenchidos corretamente-->
-            <button type="submit" class="btn btn-primary" [disabled]="meuForm.form.invalid">
+            <button type="submit" class="btn btn-primary" [disabled]="meuForm.invalid">
                 Salvar
             </button>
              <a [routerLink]="['']" class="btn btn-primary">Voltar</a>
