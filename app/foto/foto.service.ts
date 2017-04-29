@@ -30,4 +30,8 @@ export class FotoService {
                 { headers: this.headers }); 
 
     }
+
+    remove(foto) {
+       return this.http.delete(this.url + '/' + foto._id);
+    }
 }
