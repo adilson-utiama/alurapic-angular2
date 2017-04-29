@@ -22,6 +22,10 @@ var ListagemComponent = (function () {
             console.log(_this.fotos);
         }, function (erro) { return console.log(erro); });
     }
+    ListagemComponent.prototype.remove = function (foto) {
+        console.log('Chamando botao remove');
+        console.log(foto);
+    };
     return ListagemComponent;
 }());
 ListagemComponent = __decorate([

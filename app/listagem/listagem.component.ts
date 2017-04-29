@@ -19,4 +19,9 @@ export class ListagemComponent {
                 console.log(this.fotos);
             }, erro => console.log(erro));
     }
+
+    remove(foto) {
+        console.log('Chamando botao remove');
+        console.log(foto);
+    }
 }
