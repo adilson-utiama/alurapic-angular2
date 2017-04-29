@@ -1,17 +1,34 @@
 <div class="container">
 
-    <form class="row" (submit)="cadastrar($event)"><!--event binding -->
+    <form #meuForm="ngForm" class="row" (submit)="cadastrar($event)"><!--event binding -->
         <div class="col-md-6">
             <div class="form-group">
                 <label>Título</label>
-                <!--two way databinding -->
-                <!-- fomrma menos verbosa de two-way-data-binding, o atributo name é necessario -->
-                <input name="titulo" [(ngModel)]="foto.titulo" class="form-control"  autocomplete="off">    
+                <!-- #titulo="ngModel" variavel de template com a diretiva ngModel como valor -->
+                <input
+                    required
+                    #titulo="ngModel" 
+                    name="titulo" 
+                    [(ngModel)]="foto.titulo" 
+                    class="form-control"  
+                    autocomplete="off">
+                <!-- *ngIf = se o titulo esta invalido, nao exibe a mensagem -->
+                <span *ngIf="titulo.invalid" class="form-control alert-danger">
+                    Título obrigatório
+                </span>     
             </div>
             <div class="form-group">
                 <label>URL</label>
-                 <!--two way databinding -->
-                <input name="url" [(ngModel)]="foto.url" class="form-control"  autocomplete="off">
+                <input 
+                    required 
+                    #url="ngModel" 
+                    name="url" 
+                    [(ngModel)]="foto.url" 
+                    class="form-control"  
+                    autocomplete="off">
+                <span *ngIf="titulo.invalid" class="form-control alert-danger">
+                    URL obrigatório
+                </span>
             </div>
             <div class="form-group">
                 <label>Descrição</label>
@@ -19,8 +36,8 @@
                 <textarea name="descricao" [(ngModel)]="foto.descricao" class="form-control"  autocomplete="off">
                 </textarea>
             </div>
-
-            <button type="submit" class="btn btn-primary">
+            <!-- Desabilita o botao salvar caso os campos não sejam preenchidos corretamente-->
+            <button type="submit" class="btn btn-primary" [disabled]="meuForm.form.invalid">
                 Salvar
             </button>
              <a [routerLink]="['']" class="btn btn-primary">Voltar</a>
