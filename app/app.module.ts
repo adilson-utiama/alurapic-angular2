@@ -11,6 +11,10 @@ import { routing } from './app.routes';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BotaoModule } from './botao/botao.module';
 
+// nova importação! Não esqueça de adicionar no array da propriedade imports
+import { ModalModule } from './modal/modal.module';
+
+
 @NgModule({
     imports: [ 
         BrowserModule, 
@@ -20,7 +24,8 @@ import { BotaoModule } from './botao/botao.module';
         routing,
         FormsModule,
         ReactiveFormsModule,
-        BotaoModule
+        BotaoModule,
+        ModalModule
     ],
         
     declarations: [ AppComponent, CadastroComponent, ListagemComponent ],
