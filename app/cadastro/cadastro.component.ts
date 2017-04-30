@@ -49,8 +49,8 @@ export class CadastroComponent {
             .subscribe(res => {
                 this.foto = new FotoComponent();
                 console.log('Foto salva com sucesso');
-                this.mensagem = res.obterMensagem();
-                if(!res.ehInclusao()) this.router.navigate(['']);
+                this.mensagem = res.mensagem;
+                if(!res.inclusao) this.router.navigate(['']);
             }, erro => console.log(erro));
     }
 }

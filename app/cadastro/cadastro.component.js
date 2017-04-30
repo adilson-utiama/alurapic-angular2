@@ -43,8 +43,8 @@ var CadastroComponent = (function () {
             .subscribe(function (res) {
             _this.foto = new foto_component_1.FotoComponent();
             console.log('Foto salva com sucesso');
-            _this.mensagem = res.obterMensagem();
-            if (!res.ehInclusao())
+            _this.mensagem = res.mensagem;
+            if (!res.inclusao)
                 _this.router.navigate(['']);
         }, function (erro) { return console.log(erro); });
     };
