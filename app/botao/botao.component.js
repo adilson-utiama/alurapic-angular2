@@ -15,13 +15,17 @@ var BotaoComponent = (function () {
         this.nome = 'OK';
         this.estilo = 'btn-primary';
         this.tipo = 'button';
-        this.desativado = false;
+        this.desabilitado = false;
         this.acao = new core_1.EventEmitter();
     }
     BotaoComponent.prototype.executaAcao = function () {
-        if (confirm('Deseja exclluir foto?')) {
-            this.acao.emit(null);
+        if (this.confirmacao) {
+            if (confirm('Deseja exclluir foto?')) {
+                this.acao.emit(null);
+            }
+            return;
         }
+        this.acao.emit(null);
     };
     return BotaoComponent;
 }());
@@ -40,11 +44,15 @@ __decorate([
 __decorate([
     core_1.Input(),
     __metadata("design:type", Boolean)
-], BotaoComponent.prototype, "desativado", void 0);
+], BotaoComponent.prototype, "desabilitado", void 0);
 __decorate([
     core_1.Output(),
     __metadata("design:type", Object)
 ], BotaoComponent.prototype, "acao", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], BotaoComponent.prototype, "confirmacao", void 0);
 BotaoComponent = __decorate([
     core_1.Component({
         moduleId: module.id,

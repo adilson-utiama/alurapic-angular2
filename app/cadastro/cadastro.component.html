@@ -47,10 +47,16 @@
                     autocomplete="off">
                 </textarea>
             </div>
+            
+            <!-- Utilizando compponent criado -->
+            <botao nome="Salvar" tipo="submit" [desabilitado]="!meuForm.valid"></botao>
             <!-- Desabilita o botao salvar caso os campos não sejam preenchidos corretamente-->
-            <button type="submit" class="btn btn-primary" [disabled]="meuForm.invalid">
-                Salvar
-            </button>
+            <!--
+                 <button type="submit" class="btn btn-primary" [disabled]="meuForm.invalid">
+                    Salvar
+                </button>
+             -->
+           
              <a [routerLink]="['']" class="btn btn-primary">Voltar</a>
             <hr>
         </div>
