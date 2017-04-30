@@ -26,11 +26,13 @@ var FotoService = (function () {
     FotoService.prototype.cadastra = function (foto) {
         if (foto._id) {
             return this.http
-                .put(this.url + '/' + foto._id, JSON.stringify(foto), { headers: this.headers });
+                .put(this.url + '/' + foto._id, JSON.stringify(foto), { headers: this.headers })
+                .map(function () { return new MensagemCadastro('Foto alterada com sucesso', false); });
         }
         else {
             return this.http
-                .post(this.url, JSON.stringify(foto), { headers: this.headers });
+                .post(this.url, JSON.stringify(foto), { headers: this.headers })
+                .map(function () { return new MensagemCadastro('Foto incluida com sucesso', true); });
         }
     };
     FotoService.prototype.remove = function (foto) {
@@ -48,4 +50,18 @@ FotoService = __decorate([
     __metadata("design:paramtypes", [http_1.Http])
 ], FotoService);
 exports.FotoService = FotoService;
+var MensagemCadastro = (function () {
+    function MensagemCadastro(mensagem, inclusao) {
+        this.mensagem = mensagem;
+        this.inclusao = inclusao;
+    }
+    MensagemCadastro.prototype.obterMensagem = function () {
+        return this.mensagem;
+    };
+    MensagemCadastro.prototype.ehInclusao = function () {
+        return this.inclusao;
+    };
+    return MensagemCadastro;
+}());
+exports.MensagemCadastro = MensagemCadastro;
 //# sourceMappingURL=foto.service.js.map
