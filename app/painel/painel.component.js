@@ -11,13 +11,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var PainelComponent = (function () {
-    function PainelComponent() {
+    //Com ElementRef podemos pegar a referencia do DOM de Painel
+    function PainelComponent(elemento) {
+        this.elemento = elemento;
     }
     PainelComponent.prototype.ngOnInit = function () {
         this.titulo =
             this.titulo.length > 7
                 ? this.titulo.substr(0, 7) + '...'
                 : this.titulo;
+    };
+    PainelComponent.prototype.fadeOut = function (callback) {
+        //Aqui com Jquery podemos manipular o elemento do DOM, encapsulado em elemento.nativeElement
+        $(this.elemento.nativeElement).fadeOut(callback);
     };
     return PainelComponent;
 }());
@@ -32,7 +38,8 @@ PainelComponent = __decorate([
         templateUrl: './painel.component.html',
         styleUrls: ['./painel.component.css'],
         encapsulation: core_1.ViewEncapsulation.Emulated
-    })
+    }),
+    __metadata("design:paramtypes", [core_1.ElementRef])
 ], PainelComponent);
 exports.PainelComponent = PainelComponent;
 //# sourceMappingURL=painel.component.js.map

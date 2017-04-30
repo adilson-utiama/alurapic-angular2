@@ -24,16 +24,18 @@ var ListagemComponent = (function () {
             console.log(_this.fotos);
         }, function (erro) { return console.log(erro); });
     }
-    ListagemComponent.prototype.remove = function (foto, service) {
+    ListagemComponent.prototype.remove = function (foto, painel) {
         var _this = this;
         this.service
             .remove(foto)
             .subscribe(function () {
-            var novasFotos = _this.fotos.slice(0);
-            var indice = novasFotos.indexOf(foto);
-            novasFotos.splice(indice, 1);
-            _this.fotos = novasFotos; //evento de change detection, faz com que o angular atualize a view
-            _this.mensagem = 'Foto removida com sucesso.';
+            painel.fadeOut(function () {
+                var novasFotos = _this.fotos.slice(0);
+                var indice = novasFotos.indexOf(foto);
+                novasFotos.splice(indice, 1);
+                _this.fotos = novasFotos; //evento de change detection, faz com que o angular atualize a view
+                _this.mensagem = 'Foto removida com sucesso.';
+            });
         }, function (erro) {
             console.log(erro);
             _this.mensagem = 'Não foi possivel remover a foto.';
